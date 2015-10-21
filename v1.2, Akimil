@@ -59,12 +59,8 @@ public class AuraluxTest extends ApplicationAdapter {
 	private final float COLLISION_DISTANCE = 1;					// If two soldiers are closer than this, they collide and disapear
 	private final float SUN_ATTACK 		   = 30;				// When soldier is near to an enemy sun, he reduces its health
 	private final int SUN_MAGNET		   = 30;				// When soldier has went near the sun, he auto repairs/attacks the sun
-<<<<<<< HEAD
 	private final int SOLDIER_SPEED 	   = 5;					// The speed of soldiers, ie. the number of pixels that soldier passes in 1 second
 	private final int ACCELERATION		   = 1;					// Maximal acceleration that soldier can attain
-=======
-	private final int SOLDIER_SPEED 	   = 5;					// The speed of soldiers, ie. the number of pixels that soldier passes in s second
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 	private final int MAX_HEALTH 		   = 100;				// The health of the normal (unattacked) sun
 	private final int ATTACK_DAMAGE		   = 1;					// The damage made to an enemy sun.
 	private final int HEAL_REGENERATION    = 1;					// The health regeneration when sun is healed.
@@ -95,12 +91,8 @@ public class AuraluxTest extends ApplicationAdapter {
 		for(int i=0; i<MAX_BARRACKS; i++){
 			barracks.add(new Barrack(rnd.nextFloat() * 640, rnd.nextFloat() * 480, (byte)0));
 			barracks.add(new Barrack(rnd.nextFloat() * 640, rnd.nextFloat() * 480, (byte)1));
-<<<<<<< HEAD
 		}
 			
-=======
-		}		
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 		
 		// Setting the Input processor
 		Gdx.input.setInputProcessor(input);
@@ -224,7 +216,6 @@ public class AuraluxTest extends ApplicationAdapter {
 						}
 					}
 					
-<<<<<<< HEAD
 					// Computing soldier acceleration
 					if(soldiers.get(i).px>=soldiers.get(i).x)
 					{
@@ -244,11 +235,6 @@ public class AuraluxTest extends ApplicationAdapter {
 					}
 					//soldiers.get(i).vx = (float)SOLDIER_SPEED / pitagora(soldiers.get(i).px - soldiers.get(i).x, soldiers.get(i).py - soldiers.get(i).y) * (soldiers.get(i).px - soldiers.get(i).x);
 					//soldiers.get(i).vy = (float)SOLDIER_SPEED / pitagora(soldiers.get(i).px - soldiers.get(i).x, soldiers.get(i).py - soldiers.get(i).y) * (soldiers.get(i).py - soldiers.get(i).y);
-=======
-					// Computing soldier speed
-					soldiers.get(i).vx = (float)SOLDIER_SPEED / pitagora(soldiers.get(i).px - soldiers.get(i).x, soldiers.get(i).py - soldiers.get(i).y) * (soldiers.get(i).px - soldiers.get(i).x);
-					soldiers.get(i).vy = (float)SOLDIER_SPEED / pitagora(soldiers.get(i).px - soldiers.get(i).x, soldiers.get(i).py - soldiers.get(i).y) * (soldiers.get(i).py - soldiers.get(i).y);
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 				}
 				touched = null;
 				forcedRadius = false;
@@ -310,11 +296,7 @@ public class AuraluxTest extends ApplicationAdapter {
 	private class Soldier {
 		
 		// Variable definition
-<<<<<<< HEAD
 		public float x, y, px, py, vx, vy, ax, ay;
-=======
-		public float x, y, px, py, vx, vy;
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 		private byte team;
 		private boolean exists = true;
 		public boolean temp = false;
@@ -332,15 +314,9 @@ public class AuraluxTest extends ApplicationAdapter {
 		 */
 		public Soldier(float x, float y, float vx, float vy, byte team) {
 			this.x = x;
-<<<<<<< HEAD
 			this.px = x;
 			this.y = y;
 			this.py = y;
-=======
-			this.px = x - 10;
-			this.y = y;
-			this.py = y - 10;
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 			this.vx = vx;
 			this.vy = vy;
 			this.team = team;
@@ -357,8 +333,7 @@ public class AuraluxTest extends ApplicationAdapter {
 			if(!exists)return;
 			
 			// Motion
-<<<<<<< HEAD
-			if(this.vx*this.vx>2*Math.abs(this.px-this.x)*ACCELERATION)
+			if(this.vx*this.vx>2*abs(this.px-this.x)*ACCELERATION)
 			{
 				if(this.px>this.x)
 				{
@@ -369,7 +344,7 @@ public class AuraluxTest extends ApplicationAdapter {
 					ax=ACCELERATION;
 				}
 			}
-			if(this.vy*this.vy>2*Math.abs(this.py-this.y)*ACCELERATION)
+			if(this.vy*this.vy>2*abs(this.py-this.y)*ACCELERATION)
 			{
 				if(this.py>this.y)
 				{
@@ -387,11 +362,9 @@ public class AuraluxTest extends ApplicationAdapter {
 			}
 			this.vx+=this.ax;
 			this.vy+=this.ay;
-			x+=vx;
-			y += vy;
 			int i = 0;
 			
-			// Collision detector - not optimal at all, but simple--v1.2 optimization, check this only if the soldier is moving
+			// Collision detector - not optimal at all, but simple--v1.2 optimization, chack this only if the soldier is moving
 			if(vx*vx+vy*vy>0)
 			{
 				for(; i<soldiers.size(); i++) 
@@ -405,28 +378,6 @@ public class AuraluxTest extends ApplicationAdapter {
 							if(tmp >= 0 && tmp < 0.75) die();						// First dies
 							else if(tmp >= 0.25 && tmp < 1) soldiers.get(i).die();  // Second dies
 						}
-=======
-			if(Math.abs(px - x) <= 10f && Math.abs(py - y) <= 10f) vx = vy = 0;
-			else
-			{
-				this.x += vx;
-				this.y += vy;
-			}
-			
-			int i = 0;
-			
-			// Collision detector - not optimal at all, but simple
-			for(; i<soldiers.size(); i++) 
-			{
-				if(soldiers.get(i).team != this.team)
-				{
-					if(dist(this, soldiers.get(i)) < COLLISION_DISTANCE)
-					{
-						// There is 50% chance that both of them die, 25% that first wins, 25% that second wins
-						float tmp = rnd.nextFloat();
-						if(tmp >= 0 && tmp < 0.75) die();						// First dies
-						else if(tmp >= 0.25 && tmp < 1) soldiers.get(i).die();  // Second dies
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 					}
 				}
 			}
@@ -435,38 +386,23 @@ public class AuraluxTest extends ApplicationAdapter {
 			for(i=0; i<barracks.size(); i++)
 			{
 				// Attack
-<<<<<<< HEAD
 				if(barracks.get(i).team != this.team && barracks.get(i).team != 0 && pitagora(this.x - barracks.get(i).x, this.y - barracks.get(i).y) < SUN_ATTACK && barracks.get(i).x==this.px && barracks.get(i).y==this.py)
 				{
 					barracks.get(i).attack();	 											// Attack the barrack
 					if(rnd.nextFloat() > 0.5f)die();										// 50% chance of surviving
-					if(barracks.get(i).health <= 0)barracks.get(i).changeTeam((byte)0);			// Change team if lost health
-=======
-				if(barracks.get(i).team != this.team && pitagora(this.x - barracks.get(i).x, this.y - barracks.get(i).y) < SUN_ATTACK)
-				{
-					barracks.get(i).attack();	 											// Attack the barrack
-					if(rnd.nextFloat() > 0.5f)die();										// 50% chance of surviving
-					if(barracks.get(i).health <= 0)barracks.get(i).changeTeam(this.team);	// Change team if lost health
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
+					if(barracks.get(i).health <= 0)barracks.get(i).changeTeam(0);			// Change team if lost health
 					break;
 				}
 				
 				// Recover
-<<<<<<< HEAD
 		else if((barracks.get(i).team == this.team||barracks.get(i).team == 0) && pitagora(this.x - barracks.get(i).x, this.y - barracks.get(i).y) < SUN_ATTACK && barracks.get(i).health != MAX_HEALTH && barracks.get(i).x==this.px && barracks.get(i).y==this.py)
 				{
 					if(rnd.nextFloat() > 0.5f)die();	// 50% chance of surviving
 					barracks.get(i).heal();			 	// We could implement randomization here also
-					if(barracks.get(i).team == 0 && barracks.get(i).health==100)
+					if(barracks.get(i).team == 0 && health==100)
 					{
 						barracks.get(i).team=this.team;
 					}
-=======
-				else if(barracks.get(i).team == this.team && pitagora(this.x - barracks.get(i).x, this.y - barracks.get(i).y) < SUN_ATTACK && barracks.get(i).health != MAX_HEALTH)
-				{
-					if(rnd.nextFloat() > 0.5f)die();	// 50% chance of surviving
-					barracks.get(i).heal();			 	// We could implement randomization here also
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 					break;
 				}
 			}
@@ -504,12 +440,8 @@ public class AuraluxTest extends ApplicationAdapter {
 	 * x         - The X position of the barrack
 	 * y         - The Y position of the barrack
 	 * level     - The level of the barrack
-<<<<<<< HEAD
 	 * team	     - The team of the barrack//Team 0-neutral, Team 1, Team 2...
 	 * functional- Determines if the sun is producing soldiers or not
-=======
-	 * team	     - The team of the barrack
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 	 * gauge     - The health gauge
 	 * gaugeTeam - What team is posessing the health gauge
 	 * step      - Current step, by default when it reaches 60 new soldier is made.
@@ -522,12 +454,7 @@ public class AuraluxTest extends ApplicationAdapter {
 		private byte level, team, gauge, gaugeTeam, step;
 		private float health = MAX_HEALTH;
 		private float fadeOut = 0;
-<<<<<<< HEAD
 		private boolean functional=false;
-=======
-		
-		
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 		
 		/**
 		 * The class constructor.
@@ -540,10 +467,7 @@ public class AuraluxTest extends ApplicationAdapter {
 			this.x = x;
 			this.y = y;
 			this.team = team;
-<<<<<<< HEAD
 			functional=true;
-=======
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 		}
 		
 		
@@ -556,11 +480,7 @@ public class AuraluxTest extends ApplicationAdapter {
 			step++;
 			if(step == SUN_STEP){
 				step = 0;
-<<<<<<< HEAD
-				soldiers.add(new Soldier(x + (rnd.nextFloat() * 40) - 20f, y + (rnd.nextFloat() * 40) - 20f,0 , 0, team));
-=======
 				soldiers.add(new Soldier(x + (rnd.nextFloat() * 40) - 20f, y + (rnd.nextFloat() * 40) - 20f, 1, -1, team));
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 			}
 			if(health <= 0){
 				health = MAX_HEALTH;
@@ -597,10 +517,7 @@ public class AuraluxTest extends ApplicationAdapter {
 		 */
 		public void changeTeam(byte team){
 			this.team = team;
-<<<<<<< HEAD
 			this.health=0;
-=======
->>>>>>> 8eef5b76d6f50e6df6f9b1a3a265b60bdb5d6ea9
 		}
 		
 		
